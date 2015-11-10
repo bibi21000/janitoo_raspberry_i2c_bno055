@@ -1,0 +1,25 @@
+Metadata-Version: 1.0
+Name: janitoo-pi
+Version: 0.0.6
+Summary: A server which handle many controller (hardware, onewire, i2c, ...) dedicated to the raspberry
+Home-page: http://bibi21000.gallet.info/
+Author: Sébastien GALLET aka bibi2100 <bibi21000@gmail.com>
+Author-email: bibi21000@gmail.com
+License: 
+        This file is part of Janitoo.
+
+        Janitoo is free software: you can redistribute it and/or modify
+        it under the terms of the GNU General Public License as published by
+        the Free Software Foundation, either version 3 of the License, or
+        (at your option) any later version.
+
+        Janitoo is distributed in the hope that it will be useful,
+        but WITHOUT ANY WARRANTY; without even the implied warranty of
+        MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+        GNU General Public License for more details.
+
+        You should have received a copy of the GNU General Public License
+        along with Janitoo. If not, see <http://www.gnu.org/licenses/>.
+    
+Description: A server which handle many controller (hardware, onewire, i2c, ...) dedicated to the raspberry
+Platform: UNKNOWN

@@ -32,7 +32,12 @@ from pkg_resources import iter_entry_points
 
 from janitoo_nosetests.server import JNTTServer, JNTTServerCommon
 from janitoo_nosetests.thread import JNTTThread, JNTTThreadCommon
-from janitoo_nosetests.packaging import JNTTPackaging, JNTTPackagingCommon
+SKIP = False
+try:
+    from janitoo_nosetests.packaging import JNTTPackaging, JNTTPackagingCommon
+except:
+    print "Skip tests"
+    SKIP = True
 
 from janitoo.utils import json_dumps, json_loads
 from janitoo.utils import HADD_SEP, HADD
@@ -51,7 +56,9 @@ COMMAND_DISCOVERY = 0x5000
 assert(COMMAND_DESC[COMMAND_DISCOVERY] == 'COMMAND_DISCOVERY')
 ##############################################################
 
-class TestPackage(JNTTPackaging, JNTTPackagingCommon):
-    """Test the Raspberry pi package
-    """
-    pass
+if not SKIP:
+
+    class TestPackage(JNTTPackaging, JNTTPackagingCommon):
+        """Test the DatalogServer server
+        """
+        pass

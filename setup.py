@@ -61,17 +61,17 @@ data_files.extend(data_files_config('docs','src/docs','*.gif'))
 #It will be used to collect entries without installing the package
 janitoo_entry_points = {
     "janitoo.threads": [
-        "picamera = janitoo_pi.thread_camera:make_thread",
+        "picamera = janitoo_raspberry.thread_camera:make_thread",
     ],
     "janitoo.components": [
-        "picamera.photo = janitoo_pi.camera:make_photo",
-        "picamera.video = janitoo_pi.camera:make_video",
-        "picamera.stream = janitoo_pi.camera:make_stream",
+        "picamera.photo = janitoo_raspberry.camera:make_photo",
+        "picamera.video = janitoo_raspberry.camera:make_video",
+        "picamera.stream = janitoo_raspberry.camera:make_stream",
     ],
 }
 
 setup(
-    name = 'janitoo_pi',
+    name = 'janitoo_raspberry',
     description = "A server which handle many controller (hardware, onewire, i2c, ...) dedicated to the raspberry",
     long_description = "A server which handle many controller (hardware, onewire, i2c, ...) dedicated to the raspberry",
     author='Sébastien GALLET aka bibi2100 <bibi21000@gmail.com>',
@@ -101,9 +101,12 @@ setup(
     include_package_data=True,
     data_files = data_files,
     install_requires=[
-                     'janitoo == %s'%janitoo_version,
-                     'janitoo_buses == %s'%janitoo_version,
+                     'janitoo >= %s'%"0.0.6",
+                     #~ 'janitoo_buses == %s'%janitoo_version,
                      'picamera',
                     ],
+    dependency_links = [
+      'https://github.com/bibi21000/janitoo/archive/master.zip#egg=janitoo-%s'%"0.0.7",
+    ],
     entry_points = janitoo_entry_points,
 )

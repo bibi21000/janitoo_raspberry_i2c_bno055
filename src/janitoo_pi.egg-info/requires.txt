@@ -1,3 +1,0 @@
-janitoo == 0.0.6
-janitoo_buses == 0.0.6
-picamera

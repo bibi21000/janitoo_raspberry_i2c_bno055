@@ -32,7 +32,7 @@ __copyright__ = "Copyright © 2013-2014-2015 Sébastien GALLET aka bibi21000"
 
 # Set default logging handler to avoid "No handler found" warnings.
 import logging
-logger = logging.getLogger( __name__ )
+logger = logging.getLogger( 'janitoo.raspberry' )
 import os, sys
 import threading
 import time
@@ -67,6 +67,6 @@ class CameraThread(JNTBusThread):
     def init_bus(self):
         """Build the bus
         """
-        from janitoo_pi.camera import CameraBus
+        from janitoo_raspberry.camera import CameraBus
         self.section = 'picamera'
         self.bus = CameraBus(options=self.options, oid=self.section, product_name="Raspberry camera controller")

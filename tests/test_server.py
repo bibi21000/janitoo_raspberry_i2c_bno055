@@ -40,7 +40,7 @@ from janitoo.utils import TOPIC_NODES, TOPIC_NODES_REPLY, TOPIC_NODES_REQUEST
 from janitoo.utils import TOPIC_BROADCAST_REPLY, TOPIC_BROADCAST_REQUEST
 from janitoo.utils import TOPIC_VALUES_USER, TOPIC_VALUES_CONFIG, TOPIC_VALUES_SYSTEM, TOPIC_VALUES_BASIC
 
-from janitoo_pi.server import PiServer
+from janitoo_raspberry.server import PiServer
 
 ##############################################################
 #Check that we are in sync with the official command classes
@@ -53,14 +53,14 @@ assert(COMMAND_DESC[COMMAND_DISCOVERY] == 'COMMAND_DISCOVERY')
 ##############################################################
 
 class TestPiSerser(JNTTServer, JNTTServerCommon):
-    """Test the Roomba server
+    """Test the pi server
     """
     loglevel = logging.DEBUG
     path = '/tmp/janitoo_test'
     broker_user = 'toto'
     broker_password = 'toto'
     server_class = PiServer
-    server_conf = "/opt/janitoo/src/janitoo_pi/tests/data/janitoo_pi.conf"
+    server_conf = "tests/data/janitoo_raspberry.conf"
 
     def test_110_request_system_values(self):
         self.start()
@@ -70,8 +70,5 @@ class TestPiSerser(JNTTServer, JNTTServerCommon):
         self.assertBroadcastRequest(cmd_class=COMMAND_DISCOVERY, uuid='request_info_nodes', client_hadd=HADD%(9999,0))
         self.stop()
 
-class TestHarwareThread(JNTTThread, JNTTThreadCommon):
-    """Test the Hardware thread
-    """
-    thread_name = "hardware"
+
 

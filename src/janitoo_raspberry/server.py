@@ -32,16 +32,7 @@ import platform
 
 # Set default logging handler to avoid "No handler found" warnings.
 import logging
-try:  # Python 2.7+                                   # pragma: no cover
-    from logging import NullHandler                   # pragma: no cover
-except ImportError:                                   # pragma: no cover
-    class NullHandler(logging.Handler):               # pragma: no cover
-        """NullHandler logger for python 2.6"""       # pragma: no cover
-        def emit(self, record):                       # pragma: no cover
-            pass                                      # pragma: no cover
-#logger = logging.getLogger('janitoo.pi')
-#logger.addHandler(NullHandler())
-logger = logging
+logger = logging.getLogger('janitoo.raspberry')
 import os, sys
 import threading
 from pkg_resources import get_distribution, DistributionNotFound

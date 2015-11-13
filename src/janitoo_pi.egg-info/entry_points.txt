@@ -1,8 +1,0 @@
-[janitoo.threads]
-picamera = janitoo_pi.thread_camera:make_thread
-
-[janitoo.components]
-picamera.video = janitoo_pi.camera:make_video
-picamera.photo = janitoo_pi.camera:make_photo
-picamera.stream = janitoo_pi.camera:make_stream
-

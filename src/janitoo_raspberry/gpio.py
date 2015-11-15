@@ -106,7 +106,7 @@ class GpioComponent(JNTComponent):
     def __init__(self, path='generic', bus=None, addr=None, **kwargs):
         """
         """
-        oid = kwargs.pop('oid', 'http.resource')
+        oid = kwargs.pop('oid', 'pigpio.resource')
         name = kwargs.pop('name', "HTTP resource")
         product_name = kwargs.pop('product_name', "HTTP resource")
         product_type = kwargs.pop('product_type', "Software")

@@ -23,18 +23,10 @@ __email__ = 'bibi21000@gmail.com'
 
 # Set default logging handler to avoid "No handler found" warnings.
 import logging
-try:  # Python 2.7+                                   # pragma: no cover
-    from logging import NullHandler                   # pragma: no cover
-except ImportError:                                   # pragma: no cover
-    class NullHandler(logging.Handler):               # pragma: no cover
-        """NullHandler logger for python 2.6"""       # pragma: no cover
-        def emit(self, record):                       # pragma: no cover
-            pass                                      # pragma: no cover
-logger = logging.getLogger('janitoo-pi')
-logger.addHandler(NullHandler())
+logger = logging.getLogger('janitoo.raspberry')
 import sys, os, re, shutil, datetime
-from janitoo_pi.server import PiServer
 from janitoo.runner import Runner, jnt_parse_args
+from janitoo_raspberry.server import PiServer
 
 class MyPiServer(Runner):
 

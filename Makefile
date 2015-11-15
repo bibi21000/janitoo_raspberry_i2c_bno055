@@ -116,7 +116,7 @@ develop:
 	@echo
 	@echo "Installation for developpers of ${MODULENAME} finished."
 
-travis-deps:
+travis-deps: deps
 	pip install git+git://github.com/bibi21000/janitoo_nosetests@master
 	@echo
 	@echo "Travis dependencies for ${MODULENAME} installed."

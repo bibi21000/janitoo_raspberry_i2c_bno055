@@ -62,6 +62,7 @@ data_files.extend(data_files_config('docs','src/docs','*.gif'))
 janitoo_entry_points = {
     "janitoo.threads": [
         "picamera = janitoo_raspberry.thread_camera:make_thread",
+        "pigpio = janitoo_raspberry.thread_gpio:make_thread",
     ],
     "janitoo.components": [
         "picamera.photo = janitoo_raspberry.camera:make_photo",
@@ -104,6 +105,7 @@ setup(
                      'janitoo >= %s'%"0.0.6",
                      #~ 'janitoo_buses == %s'%janitoo_version,
                      'picamera',
+                     'RPi.GPIO',
                     ],
     dependency_links = [
       'https://github.com/bibi21000/janitoo/archive/master.zip#egg=janitoo-%s'%"0.0.7",

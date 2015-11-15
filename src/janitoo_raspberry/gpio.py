@@ -79,7 +79,7 @@ class GpioBus(JNTBus):
             help='The board mode to use',
             label='Boardmode',
             default='BOARD',
-            self.list_items=['BCM', 'BOARD'],
+            list_items=['BCM', 'BOARD'],
         )
 
     def check_heartbeat(self):
@@ -147,7 +147,7 @@ class InputComponent(GpioComponent):
             help='Use a pull up or a pull down',
             label='Pull Up/Down',
             default='PUD_UP',
-            self.list_items=['PUD_UP', 'PUD_DOWN'],
+            list_items=['PUD_UP', 'PUD_DOWN'],
         )
         uuid="edge"
         self.values[uuid] = self.value_factory['config_list'](options=self.options, uuid=uuid,
@@ -155,7 +155,7 @@ class InputComponent(GpioComponent):
             help='Edge to use (rising or falling)',
             label='Edge',
             default='BOTH',
-            self.list_items=['BOTH', 'RISING', 'FALLING'],
+            list_items=['BOTH', 'RISING', 'FALLING'],
         )
         uuid="bouncetime"
         self.values[uuid] = self.value_factory['config_integer'](options=self.options, uuid=uuid,

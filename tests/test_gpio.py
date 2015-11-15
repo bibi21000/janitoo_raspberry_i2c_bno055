@@ -32,6 +32,7 @@ from pkg_resources import iter_entry_points
 
 from janitoo_nosetests.server import JNTTServer, JNTTServerCommon
 from janitoo_nosetests.thread import JNTTThread, JNTTThreadCommon
+from janitoo_nosetests.component import JNTTComponent, JNTTComponentCommon
 
 from janitoo.utils import json_dumps, json_loads
 from janitoo.utils import HADD_SEP, HADD
@@ -51,8 +52,19 @@ COMMAND_DISCOVERY = 0x5000
 assert(COMMAND_DESC[COMMAND_DISCOVERY] == 'COMMAND_DISCOVERY')
 ##############################################################
 
-class TestGpioThread(JNTTThread, JNTTThreadCommon):
-    """Test the thread
-    """
-    thread_name = "pigpio"
+JNTTComponent.skipRasperryTest()
 
+class TesGpioComponentInput(JNTTComponent, JNTTComponentCommon):
+    """Test the component
+    """
+    component_name = "pigpio.input"
+
+class TesGpioComponentOutput(JNTTComponent, JNTTComponentCommon):
+    """Test the component
+    """
+    component_name = "pigpio.output"
+
+class TesGpioComponentPwm(JNTTComponent, JNTTComponentCommon):
+    """Test the component
+    """
+    component_name = "pigpio.pwm"

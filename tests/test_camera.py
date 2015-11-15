@@ -52,12 +52,19 @@ COMMAND_DISCOVERY = 0x5000
 assert(COMMAND_DESC[COMMAND_DISCOVERY] == 'COMMAND_DISCOVERY')
 ##############################################################
 
-class TesCameraThread(JNTTThread, JNTTThreadCommon):
-    """Test the thread
-    """
-    thread_name = "picamera"
+JNTTComponent.skipRasperryTest()
 
 class TesCameraComponentPhoto(JNTTComponent, JNTTComponentCommon):
     """Test the component
     """
     component_name = "picamera.photo"
+
+class TesCameraComponentVideo(JNTTComponent, JNTTComponentCommon):
+    """Test the component
+    """
+    component_name = "picamera.photo"
+
+class TesCameraComponentStream(JNTTComponent, JNTTComponentCommon):
+    """Test the component
+    """
+    component_name = "picamera.stream"

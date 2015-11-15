@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-"""The Raspberry GPIO worker
-"""
 
+"""Unittests for Janitoo-Roomba Server.
+"""
 __license__ = """
     This file is part of Janitoo.
 
@@ -23,43 +23,36 @@ __author__ = 'Sébastien GALLET aka bibi21000'
 __email__ = 'bibi21000@gmail.com'
 __copyright__ = "Copyright © 2013-2014-2015 Sébastien GALLET aka bibi21000"
 
-# Set default logging handler to avoid "No handler found" warnings.
-import logging
-logger = logging.getLogger( 'janitoo.raspberry' )
-import os, sys
+import sys, os
+import time, datetime
+import unittest
 import threading
-import time
-import datetime
-import socket
-from janitoo.thread import JNTBusThread
-from janitoo.bus import JNTBus
-from janitoo.component import JNTComponent
-from janitoo.thread import BaseThread
-from janitoo.options import get_option_autostart
+import logging
+from pkg_resources import iter_entry_points
 
+from janitoo_nosetests.server import JNTTServer, JNTTServerCommon
+from janitoo_nosetests.thread import JNTTThread, JNTTThreadCommon
+
+from janitoo.utils import json_dumps, json_loads
+from janitoo.utils import HADD_SEP, HADD
+from janitoo.utils import TOPIC_HEARTBEAT
+from janitoo.utils import TOPIC_NODES, TOPIC_NODES_REPLY, TOPIC_NODES_REQUEST
+from janitoo.utils import TOPIC_BROADCAST_REPLY, TOPIC_BROADCAST_REQUEST
+from janitoo.utils import TOPIC_VALUES_USER, TOPIC_VALUES_CONFIG, TOPIC_VALUES_SYSTEM, TOPIC_VALUES_BASIC
+
+from janitoo_raspberry.thread_gpio import GpioThread
 ##############################################################
 #Check that we are in sync with the official command classes
 #Must be implemented for non-regression
 from janitoo.classes import COMMAND_DESC
 
-COMMAND_CONTROLLER = 0x1050
+COMMAND_DISCOVERY = 0x5000
 
-assert(COMMAND_DESC[COMMAND_CONTROLLER] == 'COMMAND_CONTROLLER')
+assert(COMMAND_DESC[COMMAND_DISCOVERY] == 'COMMAND_DISCOVERY')
 ##############################################################
 
-def make_thread(options):
-    if get_option_autostart(options, 'pigpio') == True:
-        return GpioThread(options)
-    else:
-        return None
-
-class GpioThread(JNTBusThread):
-    """The GPIO thread
-
+class TestGpioThread(JNTTThread, JNTTThreadCommon):
+    """Test the thread
     """
-    def init_bus(self):
-        """Build the bus
-        """
-        from janitoo_raspberry.gpio import GpioBus
-        self.section = 'pigpio'
-        self.bus = GpioBus(options=self.options, oid=self.section, product_name="Raspberry GPIO controller")
+    thread_name = "pigpio"
+

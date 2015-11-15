@@ -65,6 +65,9 @@ janitoo_entry_points = {
         "pigpio = janitoo_raspberry.thread_gpio:make_thread",
     ],
     "janitoo.components": [
+        "pigpio.input = janitoo_raspberry.gpio:make_input",
+        "pigpio.output = janitoo_raspberry.gpio:make_output",
+        "pigpio.pwm = janitoo_raspberry.gpio:make_pwm",
         "picamera.photo = janitoo_raspberry.camera:make_photo",
         "picamera.video = janitoo_raspberry.camera:make_video",
         "picamera.stream = janitoo_raspberry.camera:make_stream",
@@ -96,6 +99,7 @@ setup(
     """,
     version = janitoo_version,
     zip_safe = False,
+    scripts=['src/scripts/jnt_raspberry'],
     packages = find_packages('src', exclude=["scripts", "docs", "config"]),
     package_dir = { '': 'src' },
     keywords = "raspberry",

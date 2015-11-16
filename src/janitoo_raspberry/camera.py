@@ -51,9 +51,15 @@ import picamera
 #Must be implemented for non-regression
 from janitoo.classes import COMMAND_DESC
 
-COMMAND_CONTROLLER = 0x1050
+COMMAND_CAMERA_PREVIEW = 0x2200
+COMMAND_CAMERA_PHOTO = 0x2201
+COMMAND_CAMERA_VIDEO = 0x2202
+COMMAND_CAMERA_STREAM = 0x2203
 
-assert(COMMAND_DESC[COMMAND_CONTROLLER] == 'COMMAND_CONTROLLER')
+assert(COMMAND_DESC[COMMAND_CAMERA_PREVIEW] == 'COMMAND_CAMERA_PREVIEW')
+assert(COMMAND_DESC[COMMAND_CAMERA_PHOTO] == 'COMMAND_CAMERA_PHOTO')
+assert(COMMAND_DESC[COMMAND_CAMERA_VIDEO] == 'COMMAND_CAMERA_VIDEO')
+assert(COMMAND_DESC[COMMAND_CAMERA_STREAM] == 'COMMAND_CAMERA_STREAM')
 ##############################################################
 
 def make_photo(**kwargs):
@@ -93,6 +99,26 @@ class CameraBus(JNTBus):
             label='led',
             default=True,
         )
+        uuid="actions"
+        self.values[uuid] = self.value_factory['action_list'](options=self.options, uuid=uuid,
+            node_uuid=self.uuid,
+            help='The actions on the camera',
+            label='Actions',
+            list_items=['start_preview', 'stop_preview'],
+            set_data_cb=self.set_action,
+            is_writeonly = True,
+            cmd_class=COMMAND_CAMERA_PREVIEW,
+            genre=0x01,
+        )
+
+    def set_action(self, node_uuid, index, data):
+        """Act on the server
+        """
+        params = {}
+        if data == "start_preview":
+            self.camera_start()
+        elif data == "stop_preview":
+            self.camera_stop()
 
     def get_public_directory(self):
         """"
@@ -209,6 +235,7 @@ class CameraPhoto(CameraComponent):
             help='Take a snapshot and return the name of the video',
             label='Snapshot',
             get_data_cb=self.get_snapshot,
+            cmd_class=COMMAND_CAMERA_PHOTO,
         )
         poll_value = self.values[uuid].create_poll_value(default=0, is_polled=False)
         self.values[poll_value.uuid] = poll_value
@@ -247,6 +274,7 @@ class CameraVideo(CameraComponent):
             help='Take a snapshot and return the name of the photo',
             label='Snapshot',
             get_data_cb=self.get_snapshot,
+            cmd_class=COMMAND_CAMERA_VIDEO,
         )
         config_value = self.values[uuid].create_config_value(help='The duration of the video', label='Duration', type=0x04, default = 10)
         self.values[config_value.uuid] = config_value
@@ -397,7 +425,7 @@ class CameraStream(CameraComponent):
             list_items=['start', 'stop'],
             set_data_cb=self.set_action,
             is_writeonly = True,
-            cmd_class = COMMAND_CONTROLLER,
+            cmd_class=COMMAND_CAMERA_STREAM,
             genre=0x01,
         )
 

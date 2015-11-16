@@ -60,7 +60,7 @@ def make_input(**kwargs):
 def make_output(**kwargs):
     return OutputComponent(**kwargs)
 
-def make_pwn(**kwargs):
+def make_pwm(**kwargs):
     return PwmComponent(**kwargs)
 
 class GpioBus(JNTBus):

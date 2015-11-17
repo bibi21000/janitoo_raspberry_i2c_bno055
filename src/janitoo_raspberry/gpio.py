@@ -139,7 +139,7 @@ class InputComponent(GpioComponent):
         oid = kwargs.pop('oid', 'gpio.input')
         product_name = kwargs.pop('product_name', "Input GPIO")
         name = kwargs.pop('name', "Input GPIO")
-        HttpResourceComponent.__init__(self, path, oid=oid, bus=bus, addr=addr, name=name,
+        GpioComponent.__init__(self, path, oid=oid, bus=bus, addr=addr, name=name,
                 product_name=product_name, **kwargs)
         uuid="pullupdown"
         self.values[uuid] = self.value_factory['config_list'](options=self.options, uuid=uuid,
@@ -197,7 +197,7 @@ class InputComponent(GpioComponent):
         """Start the component.
 
         """
-        JNTComponent.start(self, mqttc)
+        GpioComponent.start(self, mqttc)
         configs = len(self.values["pin"].get_index_configs())
         for config in range(configs):
             pull_up_down = GPIO.PUD_DOWN if self.values['pullupdown'].instances[config]['data'] == "PUD_DOWN" else GPIO.PUD_UP
@@ -219,11 +219,56 @@ class InputComponent(GpioComponent):
         configs = len(self.values["pin"].get_index_configs())
         for config in range(configs):
             GPIO.remove_event_detect(self.values["pin"].instances[config]['data'])
-        JNTComponent.stop(self)
+        GpioComponent.stop(self)
         return True
 
 class OuputComponent(GpioComponent):
     """ A resource ie /rrd """
+
+    def __init__(self, path='generic', bus=None, addr=None, **kwargs):
+        """
+        """
+        self._inputs = {}
+        oid = kwargs.pop('oid', 'gpio.output')
+        product_name = kwargs.pop('product_name', "Output GPIO")
+        name = kwargs.pop('name', "Output GPIO")
+        GpioComponent.__init__(self, path, oid=oid, bus=bus, addr=addr, name=name,
+                product_name=product_name, **kwargs)
+        uuid="state"
+        self.values[uuid] = self.value_factory['action_boolean'](options=self.options, uuid=uuid,
+            node_uuid=self.uuid,
+            help='The state of the GPIO',
+            label='State',
+            set_data_cb=self.set_state,
+        )
+        poll_value = self.values[uuid].create_poll_value(default=60)
+        self.values[poll_value.uuid] = poll_value
+
+    def start(self, mqttc):
+        """Start the component.
+
+        """
+        GpioComponent.start(self, mqttc)
+        configs = len(self.values["pin"].get_index_configs())
+        for config in range(configs):
+            GPIO.setup(self.values["pin"].instances[config]['data'], GPIO.OUT)
+        return True
+
+    def stop(self):
+        """Stop the component.
+
+        """
+        GpioComponent.stop(self)
+        return True
+
+    def set_state(self, node_uuid, index, data):
+        """
+        """
+        if index in self._inputs:
+            if data == True or data == 1:
+                GPIO.setup(self.values["pin"].instances[config]['data'], GPIO.HIGH)
+            else:
+                GPIO.setup(self.values["pin"].instances[config]['data'], GPIO.LOW)
 
 class PwmComponent(GpioComponent):
     """ A resource ie /rrd """

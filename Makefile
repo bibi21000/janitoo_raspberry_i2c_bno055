@@ -36,6 +36,7 @@ MODULENAME   = $(shell basename `pwd`)
 NOSECOVER     = --cover-package=janitoo,janitoo_db,${MODULENAME} --cover-min-percentage= --with-coverage --cover-inclusive --cover-tests --cover-html --cover-html-dir=${BUILDDIR}/docs/html/tools/coverage --with-html --html-file=${BUILDDIR}/docs/html/tools/nosetests/index.html
 
 DEBIANDEPS := $(shell [ -f debian.deps ] && cat debian.deps)
+BOWERDEPS := $(shell [ -f bower.deps ] && cat bower.deps)
 
 TAGGED := $(shell git tag | grep -c v${janitoo_version} )
 
@@ -70,7 +71,7 @@ uninstall:
 	-${PYTHON_EXEC} setup.py develop --uninstall
 	-@find . -name \*.egg-info -type d -exec rm -rf "{}" \;
 
-bower-deps:
+bower-install:
 	sudo apt-get install -y nodejs npm
 	sudo npm install -g bower
 

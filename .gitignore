@@ -62,3 +62,5 @@ build/
 archive/
 generated_docs/
 janidoc/
+flask_cache_store/
+

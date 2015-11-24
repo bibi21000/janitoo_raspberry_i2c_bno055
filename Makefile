@@ -165,6 +165,9 @@ tar:
 	@echo "Archive for ${MODULENAME} version ${janitoo_version} created"
 
 commit: develop
+	-git add rst/
+	-cp rst/README.rst .
+	-git add README.rst
 	-git commit -m "Auto-commit" -a
 	git push
 	@echo

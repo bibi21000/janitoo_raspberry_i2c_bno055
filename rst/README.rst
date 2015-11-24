@@ -2,11 +2,13 @@
     :target: https://travis-ci.org/bibi21000/janitoo_raspberry
     :alt: Travis test status
 
-.. image:: https://travis-ci.org/bibi21000/janitoo_raspberry.svg?branch=v0.0.6
-    :target: https://travis-ci.org/bibi21000/janitoo_raspberry
-    :alt: Travis production status
+===============
+The README file
+===============
 
-=================
-janitoo_raspberry
-=================
+This file will be published on your github account
 
+
+A section
+=========
+A text in this section.

@@ -8,10 +8,13 @@ python:
 # command to install dependencies
 before_install:
   - sudo apt-get update -qq
-  - sudo apt-get -y install mosquitto
+  - make deps
 install:
   - make travis-deps
   - python setup.py install
 # command to run tests
 script:
  - make tests
+ #publish results on coveralls
+after_success:
+ - coveralls

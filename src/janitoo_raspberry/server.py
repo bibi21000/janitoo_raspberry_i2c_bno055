@@ -32,7 +32,7 @@ import platform
 
 # Set default logging handler to avoid "No handler found" warnings.
 import logging
-logger = logging.getLogger('janitoo.raspberry')
+logger = logging.getLogger(__name__)
 import os, sys
 import threading
 from pkg_resources import get_distribution, DistributionNotFound

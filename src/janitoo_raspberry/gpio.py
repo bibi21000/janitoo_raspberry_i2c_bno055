@@ -27,7 +27,7 @@ __email__ = 'bibi21000@gmail.com'
 __copyright__ = "Copyright © 2013-2014-2015 Sébastien GALLET aka bibi21000"
 
 import logging
-logger = logging.getLogger("janitoo.raspberry")
+logger = logging.getLogger(__name__)
 import os, sys
 import threading
 

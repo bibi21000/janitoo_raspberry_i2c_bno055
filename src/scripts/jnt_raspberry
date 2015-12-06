@@ -23,7 +23,7 @@ __email__ = 'bibi21000@gmail.com'
 
 # Set default logging handler to avoid "No handler found" warnings.
 import logging
-logger = logging.getLogger('janitoo.raspberry')
+logger = logging.getLogger(__name__)
 import sys, os, re, shutil, datetime
 from janitoo.runner import Runner, jnt_parse_args
 from janitoo_raspberry.server import PiServer

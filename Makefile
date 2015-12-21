@@ -37,7 +37,7 @@ endif
 
 MODULENAME   = $(shell basename `pwd`)
 
-NOSECOVER     = --cover-package=janitoo,janitoo_db,${MODULENAME} --cover-min-percentage= --with-coverage --cover-inclusive --cover-tests --cover-html --cover-html-dir=${BUILDDIR}/docs/html/tools/coverage --with-html --html-file=${BUILDDIR}/docs/html/tools/nosetests/index.html
+NOSECOVER     = --cover-package=janitoo,janitoo_db,${MODULENAME} --with-coverage --cover-inclusive --cover-tests --cover-html --cover-html-dir=${BUILDDIR}/docs/html/tools/coverage --with-html --html-file=${BUILDDIR}/docs/html/tools/nosetests/index.html
 
 DEBIANDEPS := $(shell [ -f debian.deps ] && cat debian.deps)
 BOWERDEPS := $(shell [ -f bower.deps ] && cat bower.deps)
@@ -122,8 +122,15 @@ develop:
 	@echo "Installation for developpers of ${MODULENAME} finished."
 
 travis-deps: deps
-	sudo apt-get -y install libevent-2.0-5 mosquitto
+	sudo apt-get install -y python-pip
+	git clone https://github.com/bibi21000/janitoo_mosquitto.git
+	make -C janitoo_mosquitto deps
+	make -C janitoo_mosquitto develop
+	git clone https://github.com/bibi21000/janitoo_nginx.git
+	make -C janitoo_nginx deps
+	make -C janitoo_nginx develop
 	pip install git+git://github.com/bibi21000/janitoo_nosetests@master
+	pip install git+git://github.com/bibi21000/janitoo_nosetests_flask@master
 	pip install coveralls
 	@echo
 	@echo "Travis dependencies for ${MODULENAME} installed."

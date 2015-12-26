@@ -40,6 +40,8 @@ MODULENAME   = $(shell basename `pwd`)
 NOSECOVER     = --cover-package=janitoo,janitoo_db,${MODULENAME} --with-coverage --cover-inclusive --cover-tests --cover-html --cover-html-dir=${BUILDDIR}/docs/html/tools/coverage --with-html --html-file=${BUILDDIR}/docs/html/tools/nosetests/index.html
 
 DEBIANDEPS := $(shell [ -f debian.deps ] && cat debian.deps)
+BASHDEPS := $(shell [ -f bash.deps ] && echo "bash.deps")
+JANITOODEPS := $(shell [ -f janitoo.deps ] && echo janitoo.deps)
 BOWERDEPS := $(shell [ -f bower.deps ] && cat bower.deps)
 
 TAGGED := $(shell git tag | grep -c v${janitoo_version} )
@@ -75,6 +77,9 @@ uninstall:
 	-@find . -name \*.egg-info -type d -exec rm -rf "{}" \;
 
 deps:
+ifneq ('${BASHDEPS}','')
+	sudo bash ${BASHDEPS}
+endif
 ifneq ('${DEBIANDEPS}','')
 	sudo apt-get install -y ${DEBIANDEPS}
 endif

@@ -126,7 +126,7 @@ develop:
 	@echo
 	@echo "Installation for developpers of ${MODULENAME} finished."
 
-travis-deps: deps
+travis-deps:
 	sudo apt-get install -y python-pip
 	git clone https://github.com/bibi21000/janitoo_mosquitto.git
 	make -C janitoo_mosquitto deps

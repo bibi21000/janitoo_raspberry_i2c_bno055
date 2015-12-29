@@ -42,9 +42,7 @@ for arg in sys.argv:
 sys.argv = filtered_args
 
 def data_files_config(res, rsrc, src, pattern):
-    print rsrc, src
     for root, dirs, fils in os.walk(src):
-        print src, root, dirs, fils
         if src == root:
             sub = []
             for fil in fils:

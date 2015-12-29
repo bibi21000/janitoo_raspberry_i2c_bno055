@@ -48,8 +48,8 @@ def data_files_config(res, rsrc, src, pattern):
             for fil in fils:
                 sub.append(os.path.join(root,fil))
             res.append((rsrc, sub))
-        for dire in dirs:
-                data_files_config(res, os.path.join(rsrc, dire), os.path.join(root, dire), pattern)
+            for dire in dirs:
+                    data_files_config(res, os.path.join(rsrc, dire), os.path.join(root, dire), pattern)
 
 data_files = []
 data_files_config(data_files, 'docs','src/docs/','*')

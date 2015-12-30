@@ -72,7 +72,9 @@ clean: clean-doc
 	-@find . -name \*.pyc -delete
 
 uninstall:
-	-yes | ${PIP_EXEC} uninstall ${ARCHNAME}
+	-yes | ${PIP_EXEC} uninstall ${MODULENAME}
+	-${PYTHON_EXEC} setup.py develop --uninstall
+	-yes | ${PIP_EXEC} uninstall ${MODULENAME}
 	-${PYTHON_EXEC} setup.py develop --uninstall
 	-@find . -name \*.egg-info -type d -exec rm -rf "{}" \;
 

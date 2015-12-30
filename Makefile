@@ -76,7 +76,7 @@ uninstall:
 	-${PYTHON_EXEC} setup.py develop --uninstall
 	-yes | ${PIP_EXEC} uninstall ${MODULENAME}
 	-${PYTHON_EXEC} setup.py develop --uninstall
-	-@find . -name \*.egg-info -type d -exec rm -rf "{}" \;
+	#~ -@find . -name \*.egg-info -type d -exec rm -rf "{}" \;
 
 deps:
 ifneq ('${BASHDEPS}','')

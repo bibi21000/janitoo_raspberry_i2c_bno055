@@ -59,6 +59,6 @@ assert(COMMAND_DESC[COMMAND_DISCOVERY] == 'COMMAND_DISCOVERY')
 if not SKIP:
 
     class TestPackage(JNTTPackaging, JNTTPackagingCommon):
-        """Test the DatalogServer server
+        """Test the package
         """
         pass

@@ -1,9 +1,0 @@
-#!/bin/bash
-
-if [ $1 == "measure_temp" ]; then
-    echo "temp=38.7°C"
-elif [ $1 == "measure_clock" ]; then
-    echo "frequency(45)=70000000"
-elif [ $1 == "measure_volts" ]; then
-    echo "volt=3.3V"
-fi

@@ -41,7 +41,6 @@ from janitoo.utils import TOPIC_NODES, TOPIC_NODES_REPLY, TOPIC_NODES_REQUEST
 from janitoo.utils import TOPIC_BROADCAST_REPLY, TOPIC_BROADCAST_REQUEST
 from janitoo.utils import TOPIC_VALUES_USER, TOPIC_VALUES_CONFIG, TOPIC_VALUES_SYSTEM, TOPIC_VALUES_BASIC
 
-from janitoo_raspberry.thread_camera import CameraThread
 ##############################################################
 #Check that we are in sync with the official command classes
 #Must be implemented for non-regression
@@ -52,7 +51,10 @@ COMMAND_DISCOVERY = 0x5000
 assert(COMMAND_DESC[COMMAND_DISCOVERY] == 'COMMAND_DISCOVERY')
 ##############################################################
 
-class TesCameraThread(JNTTThread, JNTTThreadCommon):
-    """Test the thread
+JNTTComponent.onlyRasperryTest()
+
+class TestBMPComponent(JNTTComponent, JNTTComponentCommon):
+    """Test the component
     """
-    thread_name = "picamera"
+    component_name = "rpii2c.bmp"
+

@@ -1,5 +1,0 @@
-# defaults file for zram swap
-
-#The size of the swap
-#For raspberry B+ you can set it to 128mb (128*1024*1024)
-ZRAM_SIZE=134217728

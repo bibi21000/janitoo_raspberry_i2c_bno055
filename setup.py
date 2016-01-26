@@ -101,7 +101,7 @@ setup(
                     ],
     dependency_links = [
       'https://github.com/bibi21000/janitoo/archive/master.zip#egg=janitoo',
-      'https://github.com/bibi21000/janitoo_raspberry_i2c/archive/master.zip#egg=janitoo_rapsberry_i2c',
+      'https://github.com/bibi21000/janitoo_raspberry_i2c/archive/master.zip#egg=janitoo_raspberry_i2c',
       'https://github.com/adafruit/Adafruit_Python_GPIO/archive/master.zip#egg=Adafruit-GPIO',
       'https://github.com/adafruit/Adafruit_Python_BMP/archive/master.zip#egg=Adafruit_BMP',
     ],

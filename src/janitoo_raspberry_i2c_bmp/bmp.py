@@ -89,7 +89,7 @@ class BMPComponent(JNTComponent):
             label='Temp',
             get_data_cb=self.temperature,
         )
-        poll_value = self.values[uuid].create_poll_value()
+        poll_value = self.values[uuid].create_poll_value(default=300)
         self.values[poll_value.uuid] = poll_value
 
         uuid="altitude"
@@ -99,7 +99,7 @@ class BMPComponent(JNTComponent):
             label='Alt',
             get_data_cb=self.altitude,
         )
-        poll_value = self.values[uuid].create_poll_value()
+        poll_value = self.values[uuid].create_poll_value(default=1800)
         self.values[poll_value.uuid] = poll_value
 
         uuid="pressure"
@@ -109,7 +109,7 @@ class BMPComponent(JNTComponent):
             label='Pressure',
             get_data_cb=self.pressure,
         )
-        poll_value = self.values[uuid].create_poll_value()
+        poll_value = self.values[uuid].create_poll_value(default=300)
         self.values[poll_value.uuid] = poll_value
 
         uuid="sealevel_pressure"
@@ -119,7 +119,7 @@ class BMPComponent(JNTComponent):
             label='Sea',
             get_data_cb=self.sealevel_pressure,
         )
-        poll_value = self.values[uuid].create_poll_value()
+        poll_value = self.values[uuid].create_poll_value(default=300)
         self.values[poll_value.uuid] = poll_value
 
     def temperature(self, node_uuid, index):

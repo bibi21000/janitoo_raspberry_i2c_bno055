@@ -37,7 +37,7 @@ from janitoo.utils import HADD
 from janitoo.node import JNTNode
 from janitoo.value import JNTValue
 from janitoo.component import JNTComponent
-from janitoo_raspberry_i2c.i2c_bus import I2CBus
+from janitoo_raspberry_i2c.bus_i2c import I2CBus
 
 import Adafruit_BMP.BMP085 as BMP085
 

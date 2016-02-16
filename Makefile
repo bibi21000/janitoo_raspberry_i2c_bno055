@@ -69,6 +69,7 @@ clean: clean-doc
 	-rm -rf $(BUILDDIR)
 	-rm -f generated_doc
 	-rm -f janidoc
+	-rm -f .coverage
 	-@find . -name \*.pyc -delete
 
 uninstall:

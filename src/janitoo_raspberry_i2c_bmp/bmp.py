@@ -74,7 +74,6 @@ class BMPComponent(JNTComponent):
         #
         # For the Beaglebone Black the library will assume bus 1 by default, which is
         # exposed with SCL = P9_19 and SDA = P9_20.
-        self.sensor = BMP085.BMP085()
         product_name = kwargs.pop('product_name', "BMP")
         product_type = kwargs.pop('product_type', "Temperature/altitude/pressure sensor")
         product_manufacturer = kwargs.pop('product_manufacturer', "Janitoo")
@@ -113,7 +112,7 @@ class BMPComponent(JNTComponent):
         self.values[poll_value.uuid] = poll_value
 
         uuid="sealevel_pressure"
-        self.values[uuid] = self.value_factory['sensor_sealevel_pressure'](options=self.options, uuid=uuid,
+        self.values[uuid] = self.value_factory['sensor_pressure'](options=self.options, uuid=uuid,
             node_uuid=self.uuid,
             help='The sealevel_pressure',
             label='Sea',
@@ -121,39 +120,40 @@ class BMPComponent(JNTComponent):
         )
         poll_value = self.values[uuid].create_poll_value(default=300)
         self.values[poll_value.uuid] = poll_value
+        self.sensor = None
 
     def temperature(self, node_uuid, index):
-        data = self.sensor.read_temperature()
         try:
+            data = self.sensor.read_temperature()
             ret = float(data)
-        except ValueError:
+        except:
             logger.exception('Exception when retrieving temperature')
             ret = None
         return ret
 
     def altitude(self, node_uuid, index):
-        data = self.sensor.read_altitude()
         try:
+            data = self.sensor.read_altitude()
             ret = float(data)
-        except ValueError:
+        except:
             logger.exception('Exception when retrieving altitude')
             ret = None
         return ret
 
     def pressure(self, node_uuid, index):
-        data = self.sensor.read_pressure()
         try:
+            data = self.sensor.read_pressure()
             ret = float(data)
-        except ValueError:
+        except:
             logger.exception('Exception when retrieving pressure')
             ret = None
         return ret
 
     def sealevel_pressure(self, node_uuid, index):
-        data = self.sensor.read_sealevel_pressure()
         try:
+            data = self.sensor.read_sealevel_pressure()
             ret = float(data)
-        except ValueError:
+        except:
             logger.exception('Exception when retrieving sealevel_pressure')
             ret = None
         return ret
@@ -165,3 +165,18 @@ class BMPComponent(JNTComponent):
         if 'temperature' not in self.values:
             return False
         return self.values['temperature'].data is not None
+
+    def start(self, mqttc, trigger_thread_reload_cb=None):
+        """Start the bus
+        """
+        JNTBus.start(self, mqttc, trigger_thread_reload_cb)
+        try:
+            self.sensor = BMP085.BMP085()
+        except:
+            logger.exception("Can't start component")
+
+    def stop(self):
+        """
+        """
+        JNTBus.stop(self)
+        self.sensor = None

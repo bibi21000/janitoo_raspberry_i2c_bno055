@@ -63,30 +63,14 @@ class TestPiSerser(JNTTServer, JNTTServerCommon):
     broker_password = 'toto'
     server_class = PiServer
     server_conf = "tests/data/janitoo_raspberry_i2c_bmp.conf"
+    hadds = [HADD%(144,0), HADD%(144,1)]
 
-    def test_101_wait_for_all_nodes(self):
-        self.start()
-        try:
-            self.assertHeartbeatNodes(hadds=[HADD%(144,0), HADD%(144,1)])
-        finally:
-            self.stop()
-
-    def test_111_server_start_no_error_in_log(self):
+    def test_101_server_start_no_error_in_log(self):
         self.onlyRasperryTest()
         self.start()
         try:
             time.sleep(120)
             self.assertInLogfile('Found heartbeats in timeout')
             self.assertNotInLogfile('^ERROR ')
-        finally:
-            self.stop()
-
-    def test_112_request_nodes_and_values(self):
-        self.start()
-        try:
-            self.assertHeartbeatNode()
-            time.sleep(5)
-            for request in NETWORK_REQUESTS:
-                self.assertNodeRequest(cmd_class=COMMAND_DISCOVERY, uuid=request, node_hadd=HADD%(144,0), client_hadd=HADD%(9999,0))
         finally:
             self.stop()

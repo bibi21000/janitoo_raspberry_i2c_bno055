@@ -72,5 +72,5 @@ class TestPiSerser(JNTTServer, JNTTServerCommon):
             time.sleep(120)
         finally:
             self.stop()
-        self.assertInLogfile('Found heartbeats in timeout')
         self.assertNotInLogfile('^ERROR ')
+        self.assertInLogfile('Found heartbeats in timeout')

@@ -23,38 +23,15 @@ __author__ = 'Sébastien GALLET aka bibi21000'
 __email__ = 'bibi21000@gmail.com'
 __copyright__ = "Copyright © 2013-2014-2015 Sébastien GALLET aka bibi21000"
 
-import sys, os
-import time, datetime
-import unittest
-import threading
-import logging
-from pkg_resources import iter_entry_points
+import warnings
+warnings.filterwarnings("ignore")
 
-from janitoo_nosetests.server import JNTTServer, JNTTServerCommon
-from janitoo_nosetests.thread import JNTTThread, JNTTThreadCommon
 SKIP = False
 try:
     from janitoo_nosetests.packaging import JNTTPackaging, JNTTPackagingCommon
 except:
     print "Skip tests"
     SKIP = True
-
-from janitoo.utils import json_dumps, json_loads
-from janitoo.utils import HADD_SEP, HADD
-from janitoo.utils import TOPIC_HEARTBEAT
-from janitoo.utils import TOPIC_NODES, TOPIC_NODES_REPLY, TOPIC_NODES_REQUEST
-from janitoo.utils import TOPIC_BROADCAST_REPLY, TOPIC_BROADCAST_REQUEST
-from janitoo.utils import TOPIC_VALUES_USER, TOPIC_VALUES_CONFIG, TOPIC_VALUES_SYSTEM, TOPIC_VALUES_BASIC
-
-##############################################################
-#Check that we are in sync with the official command classes
-#Must be implemented for non-regression
-from janitoo.classes import COMMAND_DESC
-
-COMMAND_DISCOVERY = 0x5000
-
-assert(COMMAND_DESC[COMMAND_DISCOVERY] == 'COMMAND_DISCOVERY')
-##############################################################
 
 if not SKIP:
 

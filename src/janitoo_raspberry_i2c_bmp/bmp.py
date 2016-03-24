@@ -169,7 +169,7 @@ class BMPComponent(JNTComponent):
     def start(self, mqttc, trigger_thread_reload_cb=None):
         """Start the bus
         """
-        JNTBus.start(self, mqttc, trigger_thread_reload_cb)
+        JNTComponent.start(self, mqttc, trigger_thread_reload_cb)
         try:
             self.sensor = BMP085.BMP085()
         except:
@@ -178,5 +178,5 @@ class BMPComponent(JNTComponent):
     def stop(self):
         """
         """
-        JNTBus.stop(self)
+        JNTComponent.stop(self)
         self.sensor = None

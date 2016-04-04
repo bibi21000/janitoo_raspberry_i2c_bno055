@@ -143,6 +143,7 @@ travis-deps:
 	for dir in src cache cache/janitoo_manager home log run etc init; do mkdir /opt/janitoo/$$dir; done
 	pip install git+git://github.com/bibi21000/janitoo_nosetests@master
 	pip install git+git://github.com/bibi21000/janitoo_nosetests_flask@master
+	pip install smbus-cffi
 	pip install coveralls
 	@echo
 	@echo "Travis dependencies for ${MODULENAME} installed."

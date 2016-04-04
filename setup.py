@@ -54,16 +54,8 @@ def data_files_config(res, rsrc, src, pattern):
 data_files = []
 data_files_config(data_files, 'docs','src/docs/','*')
 
-#You must define a variable like the one below.
-#It will be used to collect entries without installing the package
-janitoo_entry_points = {
-    "janitoo.components": [
-        "rpii2c.bmp = janitoo_raspberry_i2c_bmp.bmp:make_bmp",
-    ],
-}
-
 setup(
-    name = 'janitoo_raspberry_i2c_bmp',
+    name = 'janitoo_raspberry_i2c_bno055',
     description = "A server which handle many controller (hardware, onewire, i2c, ...) dedicated to the raspberry",
     long_description = "A server which handle many controller (hardware, onewire, i2c, ...) dedicated to the raspberry",
     author='Sébastien GALLET aka bibi2100 <bibi21000@gmail.com>',
@@ -97,14 +89,17 @@ setup(
                      'janitoo_raspberry',
                      'janitoo_raspberry_i2c',
                      'Adafruit-GPIO',
-                     'Adafruit_BMP',
+                     'Adafruit_BNO055',
                     ],
     dependency_links = [
       'https://github.com/bibi21000/janitoo/archive/master.zip#egg=janitoo',
       'https://github.com/bibi21000/janitoo_raspberry/archive/master.zip#egg=janitoo_raspberry',
       'https://github.com/bibi21000/janitoo_raspberry_i2c/archive/master.zip#egg=janitoo_raspberry_i2c',
       'https://github.com/adafruit/Adafruit_Python_GPIO/archive/master.zip#egg=Adafruit-GPIO',
-      'https://github.com/adafruit/Adafruit_Python_BMP/archive/master.zip#egg=Adafruit_BMP',
+      'https://github.com/adafruit/Adafruit_Python_BNO055/archive/master.zip#egg=Adafruit_BNO055',
     ],
-    entry_points = janitoo_entry_points,
+    entry_points = {    "janitoo.components": [
+        "rpii2c.bno = janitoo_raspberry_i2c_bno055.bno:make_bno",
+        ],
+    },
 )

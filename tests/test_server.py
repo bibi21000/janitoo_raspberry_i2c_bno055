@@ -53,7 +53,7 @@ class TestPiSerser(JNTTServer, JNTTServerCommon):
     broker_user = 'toto'
     broker_password = 'toto'
     server_class = PiServer
-    server_conf = "tests/data/janitoo_raspberry_i2c_bmp.conf"
+    server_conf = "tests/data/janitoo_raspberry_i2c_bno.conf"
     hadds = [HADD%(144,0), HADD%(144,1)]
 
     def test_011_start_reload_stop(self):

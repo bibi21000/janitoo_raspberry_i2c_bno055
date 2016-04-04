@@ -24,7 +24,7 @@ __license__ = """
 """
 __author__ = 'Sébastien GALLET aka bibi21000'
 __email__ = 'bibi21000@gmail.com'
-__copyright__ = "Copyright © 2013-2014-2015 Sébastien GALLET aka bibi21000"
+__copyright__ = "Copyright © 2013-2014-2015-2016 Sébastien GALLET aka bibi21000"
 
 import logging
 logger = logging.getLogger(__name__)
@@ -102,7 +102,7 @@ class BNOComponent(JNTComponent):
     def temperature(self, node_uuid, index):
         self._bus.i2c_acquire()
         try:
-            data = self.sensor.read_temperature()
+            data = self.sensor.read_temp()
             ret = float(data)
         except:
             logger.exception('[%s] - Exception when retrieving temperature', self.__class__.__name__)

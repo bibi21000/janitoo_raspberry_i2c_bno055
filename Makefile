@@ -24,7 +24,7 @@ else
 python_version_full := $(wordlist 2,4,$(subst ., ,$(shell ${PYTHON_EXEC} --version 2>&1)))
 endif
 
-janitoo_version := $(shell ${PYTHON_EXEC} _version.py)
+janitoo_version := $(shell ${PYTHON_EXEC} _version.py 2>/dev/null)
 
 python_version_major = $(word 1,${python_version_full})
 python_version_minor = $(word 2,${python_version_full})
@@ -36,6 +36,7 @@ ifeq (${python_version_major},3)
 endif
 
 MODULENAME   = $(shell basename `pwd`)
+NOSEMODULES   = janitoo,janitoo_factory,janitoo_db
 
 NOSECOVER     = --cover-package=janitoo,janitoo_db,${MODULENAME} --with-coverage --cover-inclusive --cover-html --cover-html-dir=${BUILDDIR}/docs/html/tools/coverage --with-html --html-file=${BUILDDIR}/docs/html/tools/nosetests/index.html
 
@@ -47,6 +48,8 @@ BOWERDEPS := $(shell [ -f bower.deps ] && cat bower.deps)
 TAGGED := $(shell git tag | grep -c v${janitoo_version} )
 
 -include Makefile.local
+
+NOSECOVER     = --cover-package=${NOSEMODULES},${MODULENAME} --with-coverage --cover-inclusive --cover-html --cover-html-dir=${BUILDDIR}/docs/html/tools/coverage --with-html --html-file=${BUILDDIR}/docs/html/tools/nosetests/index.html
 
 .PHONY: help check-tag clean all build develop install uninstall clean-doc doc certification tests pylint deps
 

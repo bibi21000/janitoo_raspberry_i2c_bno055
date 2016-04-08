@@ -38,8 +38,6 @@ endif
 MODULENAME   = $(shell basename `pwd`)
 NOSEMODULES   = janitoo,janitoo_factory,janitoo_db
 
-NOSECOVER     = --cover-package=janitoo,janitoo_db,${MODULENAME} --with-coverage --cover-inclusive --cover-html --cover-html-dir=${BUILDDIR}/docs/html/tools/coverage --with-html --html-file=${BUILDDIR}/docs/html/tools/nosetests/index.html
-
 DEBIANDEPS := $(shell [ -f debian.deps ] && cat debian.deps)
 BASHDEPS := $(shell [ -f bash.deps ] && echo "bash.deps")
 JANITOODEPS := $(shell [ -f janitoo.deps ] && echo janitoo.deps)
@@ -50,6 +48,7 @@ TAGGED := $(shell git tag | grep -c v${janitoo_version} )
 -include Makefile.local
 
 NOSECOVER     = --cover-package=${NOSEMODULES},${MODULENAME} --with-coverage --cover-inclusive --cover-html --cover-html-dir=${BUILDDIR}/docs/html/tools/coverage --with-html --html-file=${BUILDDIR}/docs/html/tools/nosetests/index.html
+NOSEDOCKER     = --cover-package=${NOSEMODULES},${MODULENAME} --with-coverage --cover-inclusive
 
 .PHONY: help check-tag clean all build develop install uninstall clean-doc doc certification tests pylint deps
 
@@ -150,6 +149,13 @@ travis-deps:
 	pip install coveralls
 	@echo
 	@echo "Travis dependencies for ${MODULENAME} installed."
+
+docker-tests:
+	@echo
+	@echo "Docker tests for ${MODULENAME} start."
+	-[ -f tests/test_docker.py ] && $(NOSE) $(NOSEOPTS) $(NOSEDOCKER) tests/test_docker.py
+	@echo
+	@echo "Docker tests for ${MODULENAME} finished."
 
 tests:
 	-mkdir -p ${BUILDDIR}/docs/html/tools/coverage

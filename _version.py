@@ -23,7 +23,7 @@ __author__ = 'Sébastien GALLET aka bibi21000'
 __email__ = 'bibi21000@gmail.com'
 __copyright__ = "Copyright © 2013-2014-2015-2016 Sébastien GALLET aka bibi21000"
 
-janitoo_version = '0.0.6'
+janitoo_version = '0.0.7'
 
 def major():
     if "-" in janitoo_version:

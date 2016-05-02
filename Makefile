@@ -94,7 +94,7 @@ clean-doc:
 	-rm -Rf ${BUILDDIR}/janidoc
 
 janidoc:
-	ln -s /opt/janitoo/src/janidoc janidoc
+	ln -s /opt/janitoo/src/janitoo_sphinx janidoc
 
 apidoc:
 	-rm -rf ${BUILDDIR}/janidoc/source/api

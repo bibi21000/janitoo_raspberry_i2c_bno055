@@ -36,7 +36,7 @@ ifeq (${python_version_major},3)
 endif
 
 MODULENAME   = $(shell basename `pwd`)
-NOSEMODULES   = janitoo,janitoo_factory,janitoo_db
+NOSEMODULES  = janitoo,janitoo_factory,janitoo_db
 
 DEBIANDEPS := $(shell [ -f debian.deps ] && cat debian.deps)
 BASHDEPS := $(shell [ -f bash.deps ] && echo "bash.deps")

@@ -186,8 +186,7 @@ commit:
 	-git add rst/
 	-cp rst/README.rst .
 	-git add README.rst
-	-git commit -m "$(message)" -a
-	git push
+	git commit -m "$(message)" -a && git push
 	@echo
 	@echo "Commits for branch master pushed on github."
 

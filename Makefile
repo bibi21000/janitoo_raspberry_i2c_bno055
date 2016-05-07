@@ -131,10 +131,10 @@ develop:
 	@echo "Installation for developpers of ${MODULENAME} finished."
 
 docker-deps:
-	-test -d docker/config && cp -rf docker/config/* /opt/janitoo/etc/
-	-test -d docker/supervisor.conf.d && cp -rf docker/supervisor.conf.d/* /etc/supervisor/janitoo.conf.d/
-	-test -d docker/supervisor-tests.conf.d && cp -rf docker/supervisor-tests.conf.d/* /etc/supervisor/janitoo-tests.conf.d/
-	-test -d docker/nginx && cp -rf docker/nginx/* /etc/nginx/conf.d/
+	-cp -rf docker/config/* /opt/janitoo/etc/
+	-cp -rf docker/supervisor.conf.d/* /etc/supervisor/janitoo.conf.d/
+	-cp -rf docker/supervisor-tests.conf.d/* /etc/supervisor/janitoo-tests.conf.d/
+	-cp -rf docker/nginx/* /etc/nginx/conf.d/
 	true
 	@echo
 	@echo "Docker dependencies for ${MODULENAME} installed."
@@ -143,7 +143,6 @@ directories:
 	-sudo mkdir /opt/janitoo
 	-sudo chown -Rf ${USER}:${USER} /opt/janitoo
 	-for dir in cache cache/janitoo_manager home log run etc init; do mkdir /opt/janitoo/$$dir; done
-
 
 travis-deps:
 	sudo apt-get install -y python-pip

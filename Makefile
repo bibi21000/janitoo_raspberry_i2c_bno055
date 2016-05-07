@@ -131,6 +131,11 @@ develop:
 	@echo "Installation for developpers of ${MODULENAME} finished."
 
 docker-deps:
+	-test -d docker/config && cp -rf docker/config/* /opt/janitoo/etc/
+	-test -d docker/supervisor.conf.d && cp -rf docker/supervisor.conf.d/* /etc/supervisor/janitoo.conf.d/
+	-test -d docker/supervisor-tests.conf.d && cp -rf docker/supervisor-tests.conf.d/* /etc/supervisor/janitoo-tests.conf.d/
+	-test -d docker/nginx && cp -rf docker/nginx/* /etc/nginx/conf.d/
+	true
 	@echo
 	@echo "Docker dependencies for ${MODULENAME} installed."
 

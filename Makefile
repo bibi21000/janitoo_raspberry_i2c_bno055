@@ -70,8 +70,6 @@ clean-dist:
 clean: clean-doc
 	-rm -rf $(ARCHBASE)
 	-rm -rf $(BUILDDIR)
-	-rm -f generated_doc
-	-rm -f janidoc
 	-rm -f .coverage
 	-@find . -name \*.pyc -delete
 
@@ -93,6 +91,8 @@ endif
 clean-doc:
 	-rm -Rf ${BUILDDIR}/docs
 	-rm -Rf ${BUILDDIR}/janidoc
+	-rm -f generated_doc
+	-rm -f janidoc
 
 janidoc:
 	ln -s /opt/janitoo/src/janitoo_sphinx janidoc

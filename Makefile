@@ -116,6 +116,16 @@ doc: janidoc apidoc
 	@echo
 	@echo "Documentation finished."
 
+doc-commit: doc
+	git checkout gh-pages
+	cp -Rf build/docs/html/* .
+	git add ./*.html
+	git commit -m "Auto-commit documentation" -a
+	git push origin gh-pages
+	git checkout master
+	@echo
+	@echo "Documentation published to github.io."
+
 pylint:
 	-mkdir -p ${BUILDDIR}/docs/html/tools/pylint
 	$(PYLINT) --output-format=html $(PYLINTOPTS) src/${MODULENAME} >${BUILDDIR}/docs/html/tools/pylint/index.html

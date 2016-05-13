@@ -110,11 +110,23 @@ apidoc:
 doc: janidoc apidoc
 	- [ -f transitions_graph.py ] && python transitions_graph.py
 	-cp -Rf rst/* ${BUILDDIR}/janidoc/source
+	sed -i -e "s/MODULE_NAME/${MODULENAME}/g" ${BUILDDIR}/janidoc/source/tools/index.rst
 	make -C ${BUILDDIR}/janidoc html
 	cp ${BUILDDIR}/janidoc/source/README.rst README.rst
 	-ln -s $(BUILDDIR)/docs/html generated_doc
 	@echo
 	@echo "Documentation finished."
+
+github.io:
+	git checkout --orphan gh-pages
+	git rm -rf .
+	touch .nojekyll
+	git add .nojekyll
+	git commit -m "Initial import" -a
+	git push origin gh-pages
+	git checkout master
+	@echo
+	@echo "github.io branch initialised."
 
 doc-commit: doc
 	git checkout gh-pages
@@ -124,10 +136,10 @@ doc-commit: doc
 	git add tools/
 	git add api/
 	git add extensions/
-	git add _images/
-	git add _modules/
-	git add _sources/
-	git add _static/
+	-git add _images/
+	-git add _modules/
+	-git add _sources/
+	-git add _static/
 	git commit -m "Auto-commit documentation" -a
 	git push origin gh-pages
 	git checkout master

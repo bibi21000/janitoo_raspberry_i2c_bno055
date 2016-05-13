@@ -119,7 +119,15 @@ doc: janidoc apidoc
 doc-commit: doc
 	git checkout gh-pages
 	cp -Rf build/docs/html/* .
-	git add ./*.html
+	git add *.html
+	git add *.js
+	git add tools/
+	git add api/
+	git add extensions/
+	git add _images/
+	git add _modules/
+	git add _sources/
+	git add _static/
 	git commit -m "Auto-commit documentation" -a
 	git push origin gh-pages
 	git checkout master

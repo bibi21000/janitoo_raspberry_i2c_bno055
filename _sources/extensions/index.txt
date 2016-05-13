@@ -1,0 +1,13 @@
+janitoo_raspberry_i2c_bno055 package
+====================================
+
+Show janitoo's extensions.
+
+Core extensions
+---------------
+
+Components
+^^^^^^^^^^
+
+ - rpii2c.bno (janitoo_raspberry_i2c_bno055.bno:make_bno)
+

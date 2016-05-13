@@ -128,6 +128,8 @@ github.io:
 	@echo
 	@echo "github.io branch initialised."
 
+doc-full: tests pylint doc-commit
+
 doc-commit: doc
 	git checkout gh-pages
 	cp -Rf build/docs/html/* .

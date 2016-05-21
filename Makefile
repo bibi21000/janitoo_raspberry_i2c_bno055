@@ -106,7 +106,6 @@ apidoc:
 	cp -Rf janidoc/* ${BUILDDIR}/janidoc/
 	cd ${BUILDDIR}/janidoc/source/api && sphinx-apidoc --force --no-toc -o . ../../../../src/
 	cd ${BUILDDIR}/janidoc/source/api && mv ${MODULENAME}.rst index.rst
-	cd ${BUILDDIR}/janidoc/source && ./janitoo_collect.py  >extensions/index.rst
 
 doc: janidoc apidoc
 	- [ -f transitions_graph.py ] && python transitions_graph.py

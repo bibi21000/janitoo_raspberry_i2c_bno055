@@ -1,13 +1,7 @@
-janitoo_raspberry_i2c_bno055 package
-====================================
+Janitoo's extensions
+====================
 
-Show janitoo's extensions.
+This package contains the following extensions for Janitoo.
 
-Core extensions
----------------
-
-Components
-^^^^^^^^^^
-
- - rpii2c.bno (janitoo_raspberry_i2c_bno055.bno:make_bno)
+.. jnt-extensions::
 

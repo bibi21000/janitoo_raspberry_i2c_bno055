@@ -103,7 +103,7 @@ class BNOComponent(JNTComponent):
         try:
             data = self.sensor.read_temp()
             ret = float(data)
-        except:
+        except Exception:
             logger.exception('[%s] - Exception when retrieving temperature', self.__class__.__name__)
             ret = None
         finally:
@@ -123,7 +123,7 @@ class BNOComponent(JNTComponent):
         self._bus.i2c_acquire()
         try:
             self.sensor = BNO055.BNO055(rst=self.values["reset_pin"].data, address=self.values["addr"].data, i2c=self._bus._ada_i2c)
-        except:
+        except Exception:
             logger.exception("[%s] - Can't start component", self.__class__.__name__)
         finally:
             self._bus.i2c_release()

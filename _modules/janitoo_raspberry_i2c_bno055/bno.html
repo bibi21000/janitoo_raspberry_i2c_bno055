@@ -164,6 +164,8 @@
 <span class="k">assert</span><span class="p">(</span><span class="n">COMMAND_DESC</span><span class="p">[</span><span class="n">COMMAND_DOC_RESOURCE</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#39;COMMAND_DOC_RESOURCE&#39;</span><span class="p">)</span>
 <span class="c">##############################################################</span>
 
+<span class="kn">from</span> <span class="nn">janitoo_raspberry_i2c</span> <span class="kn">import</span> <span class="n">OID</span>
+
 <div class="viewcode-block" id="make_bno"><a class="viewcode-back" href="../../api/index.html#janitoo_raspberry_i2c_bno055.bno.make_bno">[docs]</a><span class="k">def</span> <span class="nf">make_bno</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">BNOComponent</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </div>
@@ -173,7 +175,7 @@
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bus</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">addr</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">oid</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;oid&#39;</span><span class="p">,</span> <span class="s">&#39;rpii2c.bno&#39;</span><span class="p">)</span>
+        <span class="n">oid</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;oid&#39;</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">.bno&#39;</span><span class="o">%</span><span class="n">OID</span><span class="p">)</span>
         <span class="n">name</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;name&#39;</span><span class="p">,</span> <span class="s">&quot;Input&quot;</span><span class="p">)</span>
         <span class="n">product_name</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;product_name&#39;</span><span class="p">,</span> <span class="s">&quot;BMP&quot;</span><span class="p">)</span>
         <span class="n">product_type</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;product_type&#39;</span><span class="p">,</span> <span class="s">&quot;Temperature/altitude/pressure sensor&quot;</span><span class="p">)</span>

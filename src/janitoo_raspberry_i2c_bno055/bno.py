@@ -55,6 +55,8 @@ assert(COMMAND_DESC[COMMAND_WEB_RESOURCE] == 'COMMAND_WEB_RESOURCE')
 assert(COMMAND_DESC[COMMAND_DOC_RESOURCE] == 'COMMAND_DOC_RESOURCE')
 ##############################################################
 
+from janitoo_raspberry_i2c import OID
+
 def make_bno(**kwargs):
     return BNOComponent(**kwargs)
 
@@ -64,7 +66,7 @@ class BNOComponent(JNTComponent):
     def __init__(self, bus=None, addr=None, **kwargs):
         """
         """
-        oid = kwargs.pop('oid', 'rpii2c.bno')
+        oid = kwargs.pop('oid', '%s.bno'%OID)
         name = kwargs.pop('name', "Input")
         product_name = kwargs.pop('product_name', "BMP")
         product_type = kwargs.pop('product_type', "Temperature/altitude/pressure sensor")

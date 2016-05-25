@@ -171,6 +171,13 @@ docker-deps:
 	@echo
 	@echo "Docker dependencies for ${MODULENAME} installed."
 
+appliance-deps:
+	-cp -rf docker/appliance/* /opt/janitoo/etc/
+	-cp -rf docker/supervisor.conf.d/* /etc/supervisor/janitoo.conf.d/
+	-cp -rf docker/nginx/* /etc/nginx/conf.d/
+	@echo
+	@echo "Appliance dependencies for ${MODULENAME} installed."
+
 directories:
 	-sudo mkdir /opt/janitoo
 	-sudo chown -Rf ${USER}:${USER} /opt/janitoo

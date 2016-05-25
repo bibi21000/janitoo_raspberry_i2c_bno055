@@ -14,6 +14,7 @@ Contents:
     Installation <index_installation>
     Utilization <index_utilization>
     Development <index_development>
+    Using documentation <using_doc>
 
 
 Indices and tables

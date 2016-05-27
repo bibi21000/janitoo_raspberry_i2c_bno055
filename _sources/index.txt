@@ -3,10 +3,21 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
+=========================
 Welcome to documentation!
 =========================
 
-Contents:
+.. jnt-package::
+    :infos: desc, longdesc
+
+License
+=======
+
+.. jnt-package::
+    :infos: license
+
+Contents
+========
 
 .. toctree::
    :maxdepth: 2
@@ -24,3 +35,8 @@ Indices and tables
 * :ref:`modindex`
 * :ref:`search`
 
+Keywords
+========
+
+.. jnt-package::
+    :infos: keywords

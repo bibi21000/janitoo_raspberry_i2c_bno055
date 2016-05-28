@@ -58,6 +58,10 @@ docs/_build/
 target/
 
 #Janitoo
+c.txt
+html/
+python.txt
+undoc.pickle
 dists/
 build/
 archive/

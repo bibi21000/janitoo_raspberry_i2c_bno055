@@ -14,7 +14,7 @@ The header
 
 From left to right :
 
-- janitoo_tutorial jumps you to the index table.
+- janitoo_sphinx jumps you to the index table.
 - Tools lets you access to Janitoo extensions (components, thread, values, ...) in this package and the development tools reports : Travis, Coversall, Lanscape, Nose, Coverage, ... (if available).
 - Reference links you to the code documentation.
 - Site is a menu for navigating between sections of the table of index.

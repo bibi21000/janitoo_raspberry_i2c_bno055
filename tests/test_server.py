@@ -64,10 +64,6 @@ class TestPiSerser(JNTTServer, JNTTServerCommon):
         self.skipRasperryTest()
         JNTTServerCommon.test_012_start_reload_threads_stop(self)
 
-    def test_030_wait_for_all_nodes(self):
-        self.skipRasperryTest()
-        JNTTServerCommon.test_030_wait_for_all_nodes(self)
-
     def test_040_server_start_no_error_in_log(self):
         self.onlyRasperryTest()
         JNTTServerCommon.test_040_server_start_no_error_in_log(self)

@@ -36,6 +36,7 @@ ifeq (${python_version_major},3)
 endif
 
 MODULENAME   = $(shell basename `pwd`)
+DOCKERNAME   = $(shell echo ${MODULENAME}|sed -e "s|janitoo_||g")
 NOSEMODULES  = janitoo,janitoo_factory,janitoo_db
 MOREMODULES  = janitoo_factory_ext,janitoo_raspberry
 
@@ -197,6 +198,33 @@ docker-tests:
 	@echo "Docker tests for ${MODULENAME} start."
 	[ -f tests/test_docker.py ] && $(NOSE) $(NOSEOPTS) $(NOSEDOCKER) tests/test_docker.py
 	@echo
+	@echo "Docker tests for ${MODULENAME} finished."
+
+docker-local-pull:
+	@echo
+	@echo "Pull local docker for ${MODULENAME}."
+	docker pull bibi21000/${MODULENAME}
+	@echo
+	@echo "Docker local for ${MODULENAME} pulled."
+
+docker-local-store: docker-local-pull
+	@echo
+	@echo "Create docker local store for ${MODULENAME}."
+	docker create -v /root/.ssh/ -v /opt/janitoo/etc/ --name ${DOCKERNAME}_store bibi21000/${MODULENAME} /bin/true
+	@echo
+	@echo "Docker local store for ${MODULENAME} created."
+
+docker-local-running: docker-local-pull
+	@echo
+	@echo "Update local docker for ${MODULENAME}."
+	-docker stop ${DOCKERNAME}_running
+	-docker rm ${DOCKERNAME}_running
+	docker create --volumes-from ${DOCKERNAME}_store -p 8885:22 --name ${DOCKERNAME}_running bibi21000/${MODULENAME}
+	docker ps -a|grep ${DOCKERNAME}_running
+	docker start ${DOCKERNAME}_running
+	docker ps|grep ${DOCKERNAME}_running
+	@echo
+	@echo "Docker local for ${MODULENAME} updated."
 	@echo "Docker tests for ${MODULENAME} finished."
 
 tests:

@@ -1,71 +1,10 @@
 # Makefile for janitoo
 #
 
-# You can set these variables from the command line.
-ARCHBASE      = archive
-BUILDDIR      = build
-DISTDIR       = dists
-NOSE          = $(shell which nosetests)
-NOSEOPTS      = --verbosity=2
-PYLINT        = $(shell which pylint)
-PYLINTOPTS    = --max-line-length=140 --max-args=9 --extension-pkg-whitelist=zmq --ignored-classes=zmq --min-public-methods=0
-
-ifndef PYTHON_EXEC
-PYTHON_EXEC=python
-endif
-
-ifndef message
-message="Auto-commit"
-endif
-
-ifdef VIRTUAL_ENV
-python_version_full := $(wordlist 2,4,$(subst ., ,$(shell ${VIRTUAL_ENV}/bin/${PYTHON_EXEC} --version 2>&1)))
-else
-python_version_full := $(wordlist 2,4,$(subst ., ,$(shell ${PYTHON_EXEC} --version 2>&1)))
-endif
-
-janitoo_version := $(shell ${PYTHON_EXEC} _version.py 2>/dev/null)
-
-python_version_major = $(word 1,${python_version_full})
-python_version_minor = $(word 2,${python_version_full})
-python_version_patch = $(word 3,${python_version_full})
-
-PIP_EXEC=pip
-ifeq (${python_version_major},3)
-	PIP_EXEC=pip3
-endif
-
-MODULENAME   = $(shell basename `pwd`)
-DOCKERNAME   = $(shell echo ${MODULENAME}|sed -e "s|janitoo_||g")
-DOCKERVOLS   =
-DOCKERPORT   = 8882
-NOSEMODULES  = janitoo,janitoo_factory,janitoo_db
-MOREMODULES  = janitoo_factory_ext,janitoo_raspberry
-
-DEBIANDEPS := $(shell [ -f debian.deps ] && cat debian.deps)
-BASHDEPS := $(shell [ -f bash.deps ] && echo "bash.deps")
-JANITOODEPS := $(shell [ -f janitoo.deps ] && echo janitoo.deps)
-BOWERDEPS := $(shell [ -f bower.deps ] && cat bower.deps)
-
-TAGGED := $(shell git tag | grep -c v${janitoo_version} )
-
+include Makefile.janitoo
 -include Makefile.local
 
-NOSECOVER     = --cover-package=${MODULENAME} --with-coverage --cover-inclusive --cover-html --cover-html-dir=${BUILDDIR}/docs/html/tools/coverage --with-html --html-file=${BUILDDIR}/docs/html/tools/nosetests/index.html
-NOSEDOCKER     = --cover-package=${NOSEMODULES},${MODULENAME},${MOREMODULES} --with-coverage --cover-inclusive --with-xunit --xunit-testsuite-name=${MODULENAME}
-
 .PHONY: help check-tag clean all build develop install uninstall clean-doc doc certification tests pylint deps docker-tests
-
-help:
-	@echo "Please use \`make <target>' where <target> is one of"
-	@echo "  build           : build the module"
-	@echo "  develop         : install for developpers"
-	@echo "  install         : install for users"
-	@echo "  uninstall       : uninstall the module"
-	@echo "  deps            : install dependencies for users"
-	@echo "  doc   	    	 : make documentation"
-	@echo "  tests           : launch tests"
-	@echo "  clean           : clean the development directory"
 
 clean-dist:
 	-rm -rf $(DISTDIR)

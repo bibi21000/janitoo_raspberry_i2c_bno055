@@ -1,0 +1,22 @@
+janitoo_raspberry_i2c_bno055 package
+====================================
+
+Submodules
+----------
+
+janitoo_raspberry_i2c_bno055.bno module
+---------------------------------------
+
+.. automodule:: janitoo_raspberry_i2c_bno055.bno
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: janitoo_raspberry_i2c_bno055
+    :members:
+    :undoc-members:
+    :show-inheritance:

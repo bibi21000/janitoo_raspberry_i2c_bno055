@@ -5,13 +5,11 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>janitoo_raspberry_i2c_bno055 package &mdash; janitoo_raspberry_i2c_bno055 0.0.7 documentation</title>
+    <title>janitoo_raspberry_i2c_bno055 package &#8212; janitoo_raspberry_i2c_bno055 0.0.7 documentation</title>
     
-    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/sphinxcontrib-images/LightBox2/lightbox2/css/lightbox.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/bootswatch-3.3.4/united/bootstrap.min.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -19,7 +17,8 @@
         VERSION:     '0.0.7',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
@@ -30,16 +29,17 @@
     <script type="text/javascript" src="../_static/sphinxcontrib-images/LightBox2/lightbox2-customize/jquery-noconflict.js"></script>
     <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
-    <script type="text/javascript" src="../_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
-    <link rel="top" title="janitoo_raspberry_i2c_bno055 0.0.7 documentation" href="../index.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
 <meta name="apple-mobile-web-app-capable" content="yes">
 
   </head>
-  <body>
+  <body role="document">
 
   <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
     <div class="container">
@@ -119,36 +119,36 @@
 <p>Server files using the http protocol</p>
 <dl class="class">
 <dt id="janitoo_raspberry_i2c_bno055.bno.BNOComponent">
-<em class="property">class </em><tt class="descclassname">janitoo_raspberry_i2c_bno055.bno.</tt><tt class="descname">BNOComponent</tt><big>(</big><em>bus=None</em>, <em>addr=None</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/janitoo_raspberry_i2c_bno055/bno.html#BNOComponent"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#janitoo_raspberry_i2c_bno055.bno.BNOComponent" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">janitoo.component.JNTComponent</span></tt></p>
+<em class="property">class </em><code class="descclassname">janitoo_raspberry_i2c_bno055.bno.</code><code class="descname">BNOComponent</code><span class="sig-paren">(</span><em>bus=None</em>, <em>addr=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/janitoo_raspberry_i2c_bno055/bno.html#BNOComponent"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#janitoo_raspberry_i2c_bno055.bno.BNOComponent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">janitoo.component.JNTComponent</span></code></p>
 <p>A generic component for gpio</p>
 <dl class="method">
 <dt id="janitoo_raspberry_i2c_bno055.bno.BNOComponent.check_heartbeat">
-<tt class="descname">check_heartbeat</tt><big>(</big><big>)</big><a class="reference internal" href="../_modules/janitoo_raspberry_i2c_bno055/bno.html#BNOComponent.check_heartbeat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#janitoo_raspberry_i2c_bno055.bno.BNOComponent.check_heartbeat" title="Permalink to this definition">¶</a></dt>
+<code class="descname">check_heartbeat</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/janitoo_raspberry_i2c_bno055/bno.html#BNOComponent.check_heartbeat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#janitoo_raspberry_i2c_bno055.bno.BNOComponent.check_heartbeat" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check that the component is &#8216;available&#8217;</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="janitoo_raspberry_i2c_bno055.bno.BNOComponent.start">
-<tt class="descname">start</tt><big>(</big><em>mqttc</em><big>)</big><a class="reference internal" href="../_modules/janitoo_raspberry_i2c_bno055/bno.html#BNOComponent.start"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#janitoo_raspberry_i2c_bno055.bno.BNOComponent.start" title="Permalink to this definition">¶</a></dt>
+<code class="descname">start</code><span class="sig-paren">(</span><em>mqttc</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/janitoo_raspberry_i2c_bno055/bno.html#BNOComponent.start"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#janitoo_raspberry_i2c_bno055.bno.BNOComponent.start" title="Permalink to this definition">¶</a></dt>
 <dd><p>Start the bus</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="janitoo_raspberry_i2c_bno055.bno.BNOComponent.stop">
-<tt class="descname">stop</tt><big>(</big><big>)</big><a class="reference internal" href="../_modules/janitoo_raspberry_i2c_bno055/bno.html#BNOComponent.stop"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#janitoo_raspberry_i2c_bno055.bno.BNOComponent.stop" title="Permalink to this definition">¶</a></dt>
+<code class="descname">stop</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/janitoo_raspberry_i2c_bno055/bno.html#BNOComponent.stop"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#janitoo_raspberry_i2c_bno055.bno.BNOComponent.stop" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="janitoo_raspberry_i2c_bno055.bno.BNOComponent.temperature">
-<tt class="descname">temperature</tt><big>(</big><em>node_uuid</em>, <em>index</em><big>)</big><a class="reference internal" href="../_modules/janitoo_raspberry_i2c_bno055/bno.html#BNOComponent.temperature"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#janitoo_raspberry_i2c_bno055.bno.BNOComponent.temperature" title="Permalink to this definition">¶</a></dt>
+<code class="descname">temperature</code><span class="sig-paren">(</span><em>node_uuid</em>, <em>index</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/janitoo_raspberry_i2c_bno055/bno.html#BNOComponent.temperature"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#janitoo_raspberry_i2c_bno055.bno.BNOComponent.temperature" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="function">
 <dt id="janitoo_raspberry_i2c_bno055.bno.make_bno">
-<tt class="descclassname">janitoo_raspberry_i2c_bno055.bno.</tt><tt class="descname">make_bno</tt><big>(</big><em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/janitoo_raspberry_i2c_bno055/bno.html#make_bno"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#janitoo_raspberry_i2c_bno055.bno.make_bno" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">janitoo_raspberry_i2c_bno055.bno.</code><code class="descname">make_bno</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/janitoo_raspberry_i2c_bno055/bno.html#make_bno"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#janitoo_raspberry_i2c_bno055.bno.make_bno" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </div>
@@ -170,7 +170,7 @@
     </p>
     <p>
         &copy; Copyright 2014,2015,2016 Sébastien GALLET aka bibi2100 &lt;bibi21000@gmail.com&gt;.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.3.<br/>
     </p>
   </div>
 </footer>

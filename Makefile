@@ -30,67 +30,6 @@ endif
 	@echo
 	@echo "Dependencies for ${MODULENAME} finished."
 
-clean-doc:
-	-rm -Rf ${BUILDDIR}/docs
-	-rm -Rf ${BUILDDIR}/janidoc
-	-rm -f objects.inv
-	-rm -f generated_doc
-	-rm -f janidoc
-
-janidoc:
-	-ln -s /opt/janitoo/src/janitoo_sphinx janidoc
-
-apidoc:
-	-rm -rf ${BUILDDIR}/janidoc/source/api
-	-mkdir -p ${BUILDDIR}/janidoc/source/api
-	cp -Rf janidoc/* ${BUILDDIR}/janidoc/
-	cd ${BUILDDIR}/janidoc/source/api && sphinx-apidoc --force --no-toc -o . ../../../../src/
-	cd ${BUILDDIR}/janidoc/source/api && mv ${MODULENAME}.rst index.rst
-
-doc: janidoc apidoc
-	- [ -f transitions_graph.py ] && python transitions_graph.py
-	-cp -Rf rst/* ${BUILDDIR}/janidoc/source
-	sed -i -e "s/MODULE_NAME/${MODULENAME}/g" ${BUILDDIR}/janidoc/source/tools/index.rst
-	make -C ${BUILDDIR}/janidoc html
-	cp ${BUILDDIR}/janidoc/source/README.rst README.rst
-	-ln -s $(BUILDDIR)/docs/html generated_doc
-	@echo
-	@echo "Documentation finished."
-
-github.io:
-	git checkout --orphan gh-pages
-	git rm -rf .
-	touch .nojekyll
-	git add .nojekyll
-	git commit -m "Initial import" -a
-	git push origin gh-pages
-	git checkout master
-	@echo
-	@echo "github.io branch initialised."
-
-doc-full: tests pylint doc-commit
-
-doc-commit: doc
-	git checkout gh-pages
-	cp -Rf build/docs/html/* .
-	git add *.html
-	git add *.js
-	git add tools/
-	git add api/
-	-git add _images/
-	-git add _modules/
-	-git add _sources/
-	-git add _static/
-	git commit -m "Auto-commit documentation" -a
-	git push origin gh-pages
-	git checkout master
-	@echo
-	@echo "Documentation published to github.io."
-
-pylint:
-	-mkdir -p ${BUILDDIR}/docs/html/tools/pylint
-	$(PYLINT) --output-format=html $(PYLINTOPTS) src/${MODULENAME} >${BUILDDIR}/docs/html/tools/pylint/index.html
-
 install:
 	${PYTHON_EXEC} setup.py install
 	@echo

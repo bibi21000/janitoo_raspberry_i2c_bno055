@@ -124,7 +124,7 @@ class BNOComponent(JNTComponent):
         JNTComponent.start(self, mqttc)
         self._bus.i2c_acquire()
         try:
-            self.sensor = BNO055.BNO055(rst=self.values["reset_pin"].data, address=self.values["addr"].data, i2c=self._bus._ada_i2c, busnum=self._bus.get_busnum())
+            self.sensor = BNO055.BNO055(rst=self.values["reset_pin"].data, address=self.values["addr"].data, i2c=self._bus.get_adafruit_i2c(), busnum=self._bus.get_busnum())
         except Exception:
             logger.exception("[%s] - Can't start component", self.__class__.__name__)
         finally:

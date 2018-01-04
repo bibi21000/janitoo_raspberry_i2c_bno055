@@ -49,3 +49,23 @@ class TestBNOComponent(JNTTComponent, JNTTComponentCommon):
     """
     component_name = "rpii2c.bno"
 
+class TestBNOThread(JNTTThreadRun, JNTTThreadRunCommon):
+    """Test the datarrd thread
+    """
+    thread_name = "rpii2c"
+    conf_file = "tests/data/janitoo_raspberry_i2c_bno.conf"
+
+    def test_101_check_values(self):
+        self.skipRasperryTest()
+        self.wait_for_nodeman()
+        time.sleep(5)
+        self.assertValueOnBus('bno1','temperature')
+
+    def test_102_get_values(self):
+        self.onlyRasperryTest()
+        self.wait_for_nodeman()
+        time.sleep(5)
+        data = self.thread.bus.nodeman.find_value('bno1','temperature').data
+        print(data)
+        self.assertNotEqual(data, None)
+        self.assertNotInLogfile('^ERROR ')

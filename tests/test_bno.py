@@ -35,6 +35,7 @@ from pkg_resources import iter_entry_points
 
 from janitoo_nosetests.server import JNTTServer, JNTTServerCommon
 from janitoo_nosetests.thread import JNTTThread, JNTTThreadCommon
+from janitoo_nosetests.thread import JNTTThreadRun, JNTTThreadRunCommon
 from janitoo_nosetests.component import JNTTComponent, JNTTComponentCommon
 
 from janitoo.utils import json_dumps, json_loads
